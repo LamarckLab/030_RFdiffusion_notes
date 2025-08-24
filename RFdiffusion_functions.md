@@ -3,7 +3,7 @@
 ---
 
 
-*01  sample 1: 无条件的单体设计*
+*01  sample 1: 无条件的单体设计 （设计一个长度为 150 的氨基酸的单体蛋白骨架，不附加其他结构或功能限制。）*
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py 'contigmap.contigs=[150-150]' inference.output_prefix=test_outputs/test inference.num_designs=3
 ```
@@ -24,6 +24,7 @@
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

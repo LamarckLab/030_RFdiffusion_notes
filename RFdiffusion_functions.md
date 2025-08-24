@@ -3,9 +3,9 @@
 ---
 
 
-*01  克隆官方的源码仓库*
+*01  sample 1: 无条件的单体设计*
 ```bash
-git clone https://github.com/RosettaCommons/RFdiffusion.git
+/data/lmk/RFdiffusion/scripts/run_inference.py 'contigmap.contigs=[150-150]' inference.output_prefix=test_outputs/test inference.num_designs=3
 ```
 
 *02  下载模型权重*
@@ -43,6 +43,7 @@ pip install -e . # 以可编辑模式安装RFdiffusion包，这样改动源码�
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

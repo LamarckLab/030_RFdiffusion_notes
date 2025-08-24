@@ -36,57 +36,14 @@ conda activate lmk_SE3nv
 *04  安装 RFdiffusion 的核心几何深度学习组件 —— SE3Transformer*
 ```bash
 cd env/SE3Transformer
-pip install --no-cache-dir -r requirements.txt
-python setup.py install
-cd ../.. # change into the root directory of the repository
-pip install -e . # install the rfdiffusion module from the root of the repository
+pip install --no-cache-dir -r requirements.txt # 安装 SE3-Transformer 需要的 Python 依赖
+python setup.py install # 把 SE3-Transformer 编译并安装到当前环境
+cd ../..
+pip install -e . # 以可编辑模式安装RFdiffusion包，这样改动源码后无需重新安装，Python会直接引用工作区的代码，便于开发与调试。
 ```
-
-*05  重建祖先序列*
-```bash
-augur ancestral \
---tree results/tree.nwk \
---alignment results/aligned.fasta \
---output-node-data results/nt_muts.json \
---inference joint
-```
-
-*06  确定氨基酸突变*
-```bash
-augur translate \
---tree results/tree.nwk \
---ancestral-sequences results/nt_muts.json \
---reference-sequence config/Rabies_virus_reference.gb \
---output results/aa_muts.json
-```
-
-*07  导出汇总*
-```bash
-augur export v2 \
---tree results/tree.nwk \
---metadata data/metadata.tsv \
---node-data results/branch_lenths.json \
-results/traits.json \
-results/nt_muts.json \
-results/aa_muts.json \
---colors config/colors.tsv \
---lat-longs config/lat_longs.tsv \
---auspice-config config/auspice_config.json \
---output auspice/rabies.json
-```
-
-*把生成的汇总json文件放在results文件夹中*
-
-*08  结果可视化*
-```bash
-conda activate auspice
-auspice build
-auspice view --datasetDir <directory of results>
-auspice view --datasetDir /mnt/f/1022/zika-tutorial/auspice_results/
-```
-
 
 ##### [官方手册](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

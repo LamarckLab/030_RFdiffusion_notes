@@ -33,14 +33,13 @@ conda env create -f env/SE3nv.yml
 conda activate lmk_SE3nv
 ```
 
-*04  重建祖先序列特征*
+*04  安装 RFdiffusion 的核心几何深度学习组件 —— SE3Transformer*
 ```bash
-augur traits \
---tree results/tree.nwk \
---metadata data/metadata.tsv \
---output results/traits.json \
---columns country \
---confidence
+cd env/SE3Transformer
+pip install --no-cache-dir -r requirements.txt
+python setup.py install
+cd ../.. # change into the root directory of the repository
+pip install -e . # install the rfdiffusion module from the root of the repository
 ```
 
 *05  重建祖先序列*
@@ -88,6 +87,7 @@ auspice view --datasetDir /mnt/f/1022/zika-tutorial/auspice_results/
 
 
 ##### [官方手册](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

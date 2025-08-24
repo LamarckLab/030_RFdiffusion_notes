@@ -1,5 +1,5 @@
 ## Lamarck &nbsp; &nbsp; &nbsp; 2025-8-25
-#### 该文档用于部署RFdiffusion
+#### 该文档用于测试RFdiffusion的各种用法
 ---
 
 
@@ -43,6 +43,7 @@ pip install -e . # 以可编辑模式安装RFdiffusion包，这样改动源码�
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

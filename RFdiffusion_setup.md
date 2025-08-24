@@ -2,13 +2,9 @@
 ---
 
 
-*01  序列比对*
+*01  克隆官方的源码仓库*
 ```bash
-augur align \
---sequences results/sequences.fasta \
---reference-sequence config/pv.gb \
---output results/aligned.fasta \
---fill-gaps
+git clone https://github.com/RosettaCommons/RFdiffusion.git
 ```
 
 *02  建树*
@@ -89,4 +85,5 @@ auspice view --datasetDir /mnt/f/1022/zika-tutorial/auspice_results/
 
 
 ##### [完整教程](https://mp.weixin.qq.com/s/ndq4WgUitU_lBcmmoD9eYQ)
+
 

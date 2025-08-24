@@ -42,7 +42,8 @@ cd ../..
 pip install -e . # 以可编辑模式安装RFdiffusion包，这样改动源码后无需重新安装，Python会直接引用工作区的代码，便于开发与调试。
 ```
 
-##### [官方手册](https://github.com/RosettaCommons/RFdiffusion)
+##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

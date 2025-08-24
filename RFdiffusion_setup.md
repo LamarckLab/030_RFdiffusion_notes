@@ -1,4 +1,5 @@
 ## Lamarck &nbsp; &nbsp; &nbsp; 2025-8-25
+#### 该文档用于部署RFdiffusion
 ---
 
 
@@ -96,6 +97,7 @@ auspice view --datasetDir /mnt/f/1022/zika-tutorial/auspice_results/
 
 
 ##### [完整教程](https://mp.weixin.qq.com/s/ndq4WgUitU_lBcmmoD9eYQ)
+
 
 
 

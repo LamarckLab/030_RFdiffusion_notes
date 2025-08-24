@@ -27,19 +27,9 @@ wget http://files.ipd.uw.edu/pub/RFdiffusion/f572d396fae9206628714fb2ce00f72e/Co
 wget http://files.ipd.uw.edu/pub/RFdiffusion/1befcb9b28e2f778f53d47f18b7597fa/RF_structure_prediction_weights.pt
 ```
 
-*03  推测时间*
+*03  根据yml文件创建conda环境 （这里把yml文件设定的环境名称从SE3nv改成了lmk_SE3nv）*
 ```bash
-augur refine \
---tree results/tree_raw.nwk \
---alignment results/aligned.fasta \
---metadata data/metadata.tsv \
---output-tree results/tree.nwk \
---output-node-data results/branch_lenths.json \
---timetree \
---coalescent opt \
---date-confidence \
---date-inference marginal \
---clock-filter-iqd 4
+conda env create -f env/SE3nv.yml
 ```
 
 *04  重建祖先序列特征*
@@ -97,6 +87,7 @@ auspice view --datasetDir /mnt/f/1022/zika-tutorial/auspice_results/
 
 
 ##### [官方手册](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

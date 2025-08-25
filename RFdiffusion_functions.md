@@ -33,6 +33,7 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py inference.output_prefix=outputs_pdb/output inference.input_pdb=input.pdb 'contigmap.contigs=[150-150]' inference.num_designs=10 diffuser.partial_T=10
 # 对输入的pdb添加噪声并扩散，从而实现结构上一定程度上的扰动和“变异”
+# diffuser.partial_T 代表加噪的步数，加噪越多，输出和输入差别越大，加噪越少，输出和输入越相似
 ```
 
 *04  *
@@ -41,6 +42,7 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

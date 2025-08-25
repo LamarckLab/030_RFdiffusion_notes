@@ -12,7 +12,7 @@
 
 *GPU选择*
 ```bash
-export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
+export CUDA_VISIBLE_DEVICES = 1 # 指定使用某块GPU
 ```
 
 *01  sample 1: Design an unconditional monomer 无条件的单体设计*
@@ -48,6 +48,7 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

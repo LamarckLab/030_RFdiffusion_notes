@@ -25,6 +25,8 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py inference.output_prefix=outputs_pdb/output inference.input_pdb=input.pdb 'contigmap.contigs=[10-20/A12-47/10-20]' inference.num_designs=3
 # 从输入文件中截取A链的12-47片段，作为motif，在两端分别延伸10-20aa的骨架
+/data/lmk/RFdiffusion/scripts/run_inference.py inference.output_prefix=outputs_pdb/output inference.input_pdb=input.pdb 'contigmap.contigs=[5-15/A10-25/30-40/0 B1-150]' inference.num_designs=3
+# 若输入pdb中有两条链，把a链的部分结构作为motif，保留b链1-150位, /0表示链断开
 ```
 
 *03  *
@@ -38,6 +40,7 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

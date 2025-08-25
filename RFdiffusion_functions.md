@@ -29,9 +29,10 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 # 若输入pdb中有两条链，把a链的部分结构作为motif，保留b链1-150位, /0表示链断开
 ```
 
-*03  sample 3: Partial diffusion*
+*03  sample 3: Partial diffusion 部分扩散*
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py inference.output_prefix=outputs_pdb/output inference.input_pdb=input.pdb 'contigmap.contigs=[150-150]' inference.num_designs=10 diffuser.partial_T=10
+# 对输入的pdb添加噪声并扩散，从而实现结构上一定程度上的扰动和“变异”
 ```
 
 *04  *
@@ -40,6 +41,7 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

@@ -15,7 +15,7 @@
 export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 ```
 
-*01  sample 1: design an unconditional monomer 无条件的单体设计*
+*01  sample 1: Design an unconditional monomer 无条件的单体设计*
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py 'contigmap.contigs=[150-150]' inference.output_prefix=outputs_pdb/output inference.num_designs=10
 # 设计一个 150aa 的单体蛋白骨架，不附加其他结构或功能限制
@@ -29,9 +29,9 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 # 若输入pdb中有两条链，把a链的部分结构作为motif，保留b链1-150位, /0表示链断开
 ```
 
-*03  *
+*03  sample 3: Partial diffusion*
 ```bash
-
+/data/lmk/RFdiffusion/scripts/run_inference.py inference.output_prefix=outputs_pdb/output inference.input_pdb=input.pdb 'contigmap.contigs=[79-79]' inference.num_designs=10 diffuser.partial_T=10
 ```
 
 *04  *
@@ -40,6 +40,7 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

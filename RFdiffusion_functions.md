@@ -39,10 +39,11 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 *04  sample 4: Binder design 结合物设计*
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py inference.output_prefix=outputs_pdb/output inference.input_pdb=input.pdb 'contigmap.contigs=[A1-150/0 70-100]' 'ppi.hotspot_res=[A15,A11,A8]' inference.num_designs=10 denoiser.noise_scale_ca=0 denoiser.noise_scale_frame=0
-# 
+# 'contigmap.contigs=[A1-150/0 70-100]' 表示保留输入PDB中a链的1-150残基，设计一条70-100aa的binder，期望结合在'ppi.hotspot_res=[A15,A11,A8]'
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

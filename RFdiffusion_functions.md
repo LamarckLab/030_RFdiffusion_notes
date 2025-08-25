@@ -31,7 +31,7 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 
 *03  sample 3: Partial diffusion*
 ```bash
-/data/lmk/RFdiffusion/scripts/run_inference.py inference.output_prefix=outputs_pdb/output inference.input_pdb=input.pdb 'contigmap.contigs=[79-79]' inference.num_designs=10 diffuser.partial_T=10
+/data/lmk/RFdiffusion/scripts/run_inference.py inference.output_prefix=outputs_pdb/output inference.input_pdb=input.pdb 'contigmap.contigs=[150-150]' inference.num_designs=10 diffuser.partial_T=10
 ```
 
 *04  *
@@ -40,6 +40,7 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

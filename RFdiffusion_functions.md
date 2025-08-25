@@ -36,12 +36,14 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 # diffuser.partial_T 代表加噪的步数，加噪越多，输出和输入差别越大，加噪越少，输出和输入越相似
 ```
 
-*04  *
+*04  sample 4: Binder design 结合物设计*
 ```bash
-
+/data/lmk/RFdiffusion/scripts/run_inference.py inference.output_prefix=example_outputs/design_ppi inference.input_pdb=input_pdbs/insulin_target.pdb 'contigmap.contigs=[A1-150/0 70-100]' 'ppi.hotspot_res=[A59,A83,A91]' inference.num_designs=10 denoiser.noise_scale_ca=0 denoiser.noise_scale_frame=0
+# 
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

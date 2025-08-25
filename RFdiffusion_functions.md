@@ -21,9 +21,10 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 # 设计一个 150aa 的单体蛋白骨架，不附加其他结构或功能限制
 ```
 
-*02  sample 2: *
+*02  sample 2: Motif Scaffolding*
 ```bash
-
+/data/lmk/RFdiffusion/scripts/run_inference.py inference.output_prefix=outputs_pdb/output inference.input_pdb=input.pdb 'contigmap.contigs=[10-20/A115-147/10-20]' inference.num_designs=3
+# 
 ```
 
 *03  *
@@ -37,6 +38,7 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

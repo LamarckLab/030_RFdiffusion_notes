@@ -42,7 +42,13 @@ export CUDA_VISIBLE_DEVICES = 1 # 在跑命令前指定使用某块GPU
 # 'contigmap.contigs=[A1-150/0 70-100]' 表示保留输入PDB中a链的1-150残基，设计一条70-100aa的binder，期望结合在'ppi.hotspot_res=[A15,A11,A8]'
 ```
 
+*05  sample 5: Symmetric Motif Scaffolding 对称性蛋白基序的支架设计*
+```bash
+
+```
+
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

@@ -5,8 +5,8 @@
 *00  sample 0: 环境 & 路径*
 ```bash
 236 server上的环境: lmk_SE3nv
-117 server上的环境: SE3nv
 236 server上的路径: /data/lmk/RFdiffusion/scripts/run_inference.py
+117 server上的环境: SE3nv
 117 server上的路径: /data/RFdiffusion/scripts/run_inference.py
 ```
 
@@ -31,6 +31,7 @@
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

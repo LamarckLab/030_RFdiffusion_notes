@@ -30,7 +30,7 @@ export CUDA_VISIBLE_DEVICES = 1 # 指定使用某块GPU
 # 若输入pdb中有两条链，把a链的部分结构作为motif，保留b链1-150位, /0表示链断开
 
 /data/lmk/RFdiffusion/scripts/run_inference.py inference.output_prefix=outputs_pdb/output inference.input_pdb=input.pdb 'contigmap.contigs=[A73-268/0 B72-268/0 C44-71/0 10-20/C74-258/0]' 'ppi.hotspot_res=[C115,B149]' inference.num_designs=3 denoiser.noise_scale_ca=0 denoiser.noise_scale_frame=0
-# 
+# 保留AB两条链，延伸C链74位点这一端，到hotspot的位置
 ```
 
 *03  sample 3: Partial diffusion 部分扩散*
@@ -52,6 +52,7 @@ export CUDA_VISIBLE_DEVICES = 1 # 指定使用某块GPU
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

@@ -27,10 +27,10 @@ wget http://files.ipd.uw.edu/pub/RFdiffusion/f572d396fae9206628714fb2ce00f72e/Co
 wget http://files.ipd.uw.edu/pub/RFdiffusion/1befcb9b28e2f778f53d47f18b7597fa/RF_structure_prediction_weights.pt
 ```
 
-*03  根据yml文件创建conda环境 （这里把yml文件设定的环境名称从SE3nv改成了lmk_SE3nv）*
+*03  根据yml文件创建conda环境 （这里把yml文件设定的环境名称从SE3nv改成了lmk_RFdiffusion）*
 ```bash
 conda env create -f env/SE3nv.yml
-conda activate lmk_SE3nv
+conda activate lmk_RFdiffusion
 ```
 
 *04  安装 RFdiffusion 的核心几何深度学习组件 —— SE3Transformer*
@@ -43,6 +43,7 @@ pip install -e . # 以可编辑模式安装RFdiffusion包，这样改动源码�
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

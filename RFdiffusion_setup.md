@@ -29,7 +29,7 @@ wget http://files.ipd.uw.edu/pub/RFdiffusion/1befcb9b28e2f778f53d47f18b7597fa/RF
 
 *03  根据yml文件创建conda环境 （这里把yml文件设定的环境名称从SE3nv改成了lmk_RFdiffusion）*
 ```bash
-conda env create -f env/SE3nv.yml
+conda env create -f /data/lmk/RFdiffusion/env/SE3nv.yml
 conda activate lmk_RFdiffusion
 ```
 
@@ -43,6 +43,7 @@ pip install -e . # 以可编辑模式安装RFdiffusion包，这样改动源码�
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+
 
 
 

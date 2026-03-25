@@ -95,5 +95,3 @@ export CUDA_VISIBLE_DEVICES = 1 # 指定使用某块GPU
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
-
-##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)

@@ -1,6 +1,6 @@
 <h1 align="center">🧬 RFdiffusion 部署与使用笔记</h1>
 
-<p align="center"><em>—— 2025.8.25</em></p>
+<p align="center"><em>—— 2025.08.25</em></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Tool-RFdiffusion-blue?style=flat-square" />

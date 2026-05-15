@@ -21,4 +21,4 @@
 
 ---
 
-##### [RFdiffusion 官方文档](https://github.com/RosettaCommons/RFdiffusion
+##### [RFdiffusion 官方文档](https://github.com/RosettaCommons/RFdiffusion)

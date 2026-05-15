@@ -1,5 +1,5 @@
 ## Lamarck &nbsp; &nbsp; &nbsp; 2025-8-25
-#### 该文档用于复现RFdiffusion文档中的全部示例
+#### 该文档用于复现 RFdiffusion 官方文档中的全部示例
 ---
 
 *环境 & 路径*
@@ -12,7 +12,7 @@
 
 *GPU选择*
 ```bash
-export CUDA_VISIBLE_DEVICES = 1 # 指定使用某块GPU
+export CUDA_VISIBLE_DEVICES = 1 # 指定使用某块 GPU
 ```
 
 *01  sample 1: Design an unconditional monomer 无条件的单体设计*

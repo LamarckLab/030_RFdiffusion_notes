@@ -1,5 +1,5 @@
 ## Lamarck &nbsp; &nbsp; &nbsp; 2025-8-25
-#### 该文档用于部署RFdiffusion
+#### 该文档用于部署 RFdiffusion
 ---
 
 
@@ -27,7 +27,7 @@ wget http://files.ipd.uw.edu/pub/RFdiffusion/f572d396fae9206628714fb2ce00f72e/Co
 wget http://files.ipd.uw.edu/pub/RFdiffusion/1befcb9b28e2f778f53d47f18b7597fa/RF_structure_prediction_weights.pt
 ```
 
-*03  根据yml文件创建conda环境 （这里把yml文件设定的环境名称从SE3nv改成了lmk_RFdiffusion）*
+*03  根据 yml 文件创建 conda 环境 (这里把 yml 文件设定的环境名称从 SE3nv 改成了 lmk_RFdiffusion )*
 ```bash
 conda env create -f /data/lmk/RFdiffusion/env/SE3nv.yml
 conda activate lmk_RFdiffusion
@@ -39,7 +39,7 @@ cd env/SE3Transformer
 pip install --no-cache-dir -r requirements.txt # 安装 SE3-Transformer 需要的 Python 依赖
 python setup.py install # 把 SE3-Transformer 编译并安装到当前环境
 cd ../..
-pip install -e . # 以可编辑模式安装RFdiffusion包，这样改动源码后无需重新安装，Python会直接引用工作区的代码，便于开发与调试。
+pip install -e . # 以可编辑模式安装 RFdiffusion 包，这样改动源码后无需重新安装，Python 会直接引用工作区的代码，便于开发与调试。
 ```
 
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)

@@ -30,7 +30,8 @@ export CUDA_VISIBLE_DEVICES=3
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   'contigmap.contigs=[150-150]' \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=3
 ```
 
@@ -45,7 +46,8 @@ export CUDA_VISIBLE_DEVICES=3
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[10-20/A12-47/10-20]' \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=3
 ```
 
@@ -57,7 +59,8 @@ export CUDA_VISIBLE_DEVICES=3
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[10-20/A12-47/10-20]' \
   contigmap.length=70-70 \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=3
 ```
 
@@ -69,7 +72,8 @@ export CUDA_VISIBLE_DEVICES=3
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[10-20/A12-47/10-20]' \
   contigmap.length=60-70 \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=3
 ```
 
@@ -80,7 +84,8 @@ export CUDA_VISIBLE_DEVICES=3
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
   'contigmap.contigs=[5-15/A100-200/5-15/0 B72-268]' \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=3
 ```
 
@@ -92,7 +97,8 @@ export CUDA_VISIBLE_DEVICES=3
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
   'contigmap.contigs=[5-15/A100-200/5-15/0 B72-268]' \
   'ppi.hotspot_res=[B199]' \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=3
 ```
 
@@ -108,7 +114,8 @@ export CUDA_VISIBLE_DEVICES=3
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[150-150]' \
   diffuser.partial_T=10 \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=10
 ```
 
@@ -120,7 +127,8 @@ export CUDA_VISIBLE_DEVICES=3
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[150-150]' \
   diffuser.partial_T=30 \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=10
 ```
 
@@ -135,7 +143,8 @@ export CUDA_VISIBLE_DEVICES=3
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[A1-150/0 70-100]' \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=10
 ```
 
@@ -147,7 +156,8 @@ export CUDA_VISIBLE_DEVICES=3
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[A1-150/0 70-100]' \
   'ppi.hotspot_res=[A15,A50,A100]' \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=10
 ```
 
@@ -159,7 +169,8 @@ export CUDA_VISIBLE_DEVICES=3
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
   'contigmap.contigs=[A73-268/0 B72-268/0 C44-268/0 70-100]' \
   'ppi.hotspot_res=[B199]' \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=10
 ```
 
@@ -173,7 +184,8 @@ export CUDA_VISIBLE_DEVICES=3
   'ppi.hotspot_res=[A15,A50,A100]' \
   denoiser.noise_scale_ca=0.5 \
   denoiser.noise_scale_frame=0.5 \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=10
 ```
 
@@ -189,7 +201,8 @@ export CUDA_VISIBLE_DEVICES=3
   --config-name symmetry \
   inference.symmetry=c3 \
   'contigmap.contigs=[300]' \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=2
 ```
 
@@ -201,7 +214,8 @@ export CUDA_VISIBLE_DEVICES=3
   --config-name symmetry \
   inference.symmetry=c4 \
   'contigmap.contigs=[400]' \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=2
 ```
 
@@ -213,7 +227,8 @@ D2 = 2n = 4 链；总长应能被 4 整除
   --config-name symmetry \
   inference.symmetry=d2 \
   'contigmap.contigs=[400]' \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=2
 ```
 
@@ -225,7 +240,8 @@ D2 = 2n = 4 链；总长应能被 4 整除
   --config-name symmetry \
   inference.symmetry=tetrahedral \
   'contigmap.contigs=[360]' \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=1
 ```
 
@@ -246,7 +262,8 @@ asu.pdb 自身是 C3 同源三聚体；从每条链取相同位置的一段做 m
   potentials.olig_inter_all=True \
   potentials.guide_scale=2 \
   potentials.guide_decay=quadratic \
-  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
+  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=2
 ```
 > [!NOTE]

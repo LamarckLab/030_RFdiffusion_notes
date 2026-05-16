@@ -1,5 +1,5 @@
 ## Lamarck &nbsp; &nbsp; &nbsp; 2025-08-25
-#### 该文档用于复现 RFdiffusion 官方文档中的全部示例
+#### 该文档用于记录 server 上跑 RFdiffusion 的各种命令
 ---
 
 *环境 & 路径*
@@ -30,7 +30,7 @@ export CUDA_VISIBLE_DEVICES=3
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   'contigmap.contigs=[150-150]' \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=3
 ```
 
@@ -43,9 +43,9 @@ export CUDA_VISIBLE_DEVICES=3
 从 monomer.pdb 取 A 链 12-47 作为 motif，两端分别延伸 10-20aa 长度的随机骨架
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=monomer.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[10-20/A12-47/10-20]' \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=3
 ```
 
@@ -54,10 +54,10 @@ export CUDA_VISIBLE_DEVICES=3
 加 `contigmap.length` 把骨架总长锁死，不让随机区间影响最终长度，生成 70aa 的最终骨架
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=monomer.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[10-20/A12-47/10-20]' \
   contigmap.length=70-70 \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=3
 ```
 
@@ -66,10 +66,10 @@ export CUDA_VISIBLE_DEVICES=3
 `contigmap.length` 也可以写区间，生成 60-70aa 的最终骨架
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=monomer.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[10-20/A12-47/10-20]' \
   contigmap.length=60-70 \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=3
 ```
 
@@ -78,9 +78,9 @@ export CUDA_VISIBLE_DEVICES=3
 用 asu.pdb 的 A 链 100-200 作为 motif，B 链 72-268 整条作为 target chain，`/0` 表示新链开始
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=asu.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
   'contigmap.contigs=[5-15/A100-200/5-15/0 B72-268]' \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=3
 ```
 
@@ -89,10 +89,10 @@ export CUDA_VISIBLE_DEVICES=3
 加 `ppi.hotspot_res` 指定 target 上一个或多个关键残基，设计的部分会朝它去
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=asu.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
   'contigmap.contigs=[5-15/A100-200/5-15/0 B72-268]' \
   'ppi.hotspot_res=[B199]' \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=3
 ```
 
@@ -105,10 +105,10 @@ export CUDA_VISIBLE_DEVICES=3
 对 monomer.pdb 加噪后再去噪，输出与输入结构相近的"变异体"。`diffuser.partial_T` 是加噪步数，步数越大变异越多（contig 总长必须严格等于输入 pdb 的残基数 (monomer.pdb 是 150aa)，否则会报错）
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=monomer.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[150-150]' \
   diffuser.partial_T=10 \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=10
 ```
 
@@ -117,10 +117,10 @@ export CUDA_VISIBLE_DEVICES=3
 把 partial_T 调到 30 (约 T 的 60%)，结构扰动明显加大，可用于探索更广的折叠空间（partial_T / T 这个比值决定了"加多少噪"，比值越接近 1，输出离输入越远）
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=monomer.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[150-150]' \
   diffuser.partial_T=30 \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=10
 ```
 
@@ -133,9 +133,9 @@ export CUDA_VISIBLE_DEVICES=3
 把 monomer.pdb 的 A 链作为 target，设计一条 70-100aa 的新 binder。不给 hotspot 时 binder 落点完全随机
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=monomer.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[A1-150/0 70-100]' \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=10
 ```
 
@@ -144,10 +144,10 @@ export CUDA_VISIBLE_DEVICES=3
 加 `ppi.hotspot_res` 指定 binder 应该结合到 target 的哪几个残基附近 (官方推荐 3-6 个)
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=monomer.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[A1-150/0 70-100]' \
   'ppi.hotspot_res=[A15,A50,A100]' \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=10
 ```
 
@@ -156,10 +156,10 @@ export CUDA_VISIBLE_DEVICES=3
 用 asu.pdb 的 ABC 三链全部作为 target，hotspot 放在 B 链 199 位
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=asu.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
   'contigmap.contigs=[A73-268/0 B72-268/0 C44-268/0 70-100]' \
   'ppi.hotspot_res=[B199]' \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=10
 ```
 
@@ -168,12 +168,12 @@ export CUDA_VISIBLE_DEVICES=3
 官方推荐 binder design 把噪声降到 0.5 (默认 1.0)，质量和多样性的平衡点；设 0 最保守、最确定，但多样性最低
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=monomer.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
   'contigmap.contigs=[A1-150/0 70-100]' \
   'ppi.hotspot_res=[A15,A50,A100]' \
   denoiser.noise_scale_ca=0.5 \
   denoiser.noise_scale_frame=0.5 \
-  inference.output_prefix=outputs_pdb/output \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=10
 ```
 
@@ -189,7 +189,7 @@ export CUDA_VISIBLE_DEVICES=3
   --config-name symmetry \
   inference.symmetry=c3 \
   'contigmap.contigs=[300]' \
-  inference.output_prefix=outputs_pdb/c3 \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=2
 ```
 
@@ -201,7 +201,7 @@ export CUDA_VISIBLE_DEVICES=3
   --config-name symmetry \
   inference.symmetry=c4 \
   'contigmap.contigs=[400]' \
-  inference.output_prefix=outputs_pdb/c4 \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=2
 ```
 
@@ -213,7 +213,7 @@ D2 = 2n = 4 链；总长应能被 4 整除
   --config-name symmetry \
   inference.symmetry=d2 \
   'contigmap.contigs=[400]' \
-  inference.output_prefix=outputs_pdb/d2 \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=2
 ```
 
@@ -225,7 +225,7 @@ D2 = 2n = 4 链；总长应能被 4 整除
   --config-name symmetry \
   inference.symmetry=tetrahedral \
   'contigmap.contigs=[360]' \
-  inference.output_prefix=outputs_pdb/tet \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=1
 ```
 
@@ -238,7 +238,7 @@ D2 = 2n = 4 链；总长应能被 4 整除
 asu.pdb 自身是 C3 同源三聚体；从每条链取相同位置的一段做 motif，让 RFdiffusion 在 C3 对称约束下补完两端骨架。要点：contig 必须把 3 个对称单元都写清楚，每个单元里的 motif 在空间上要对应同一个对称位置
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=asu.pdb \
+  inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
   inference.symmetry=c3 \
   'contigmap.contigs=[50/A100-130/50/0 50/B100-130/50/0 50/C100-130/50/0]' \
   'potentials.guiding_potentials=["type:olig_contacts,weight_intra:1,weight_inter:0.1"]' \
@@ -246,7 +246,7 @@ asu.pdb 自身是 C3 同源三聚体；从每条链取相同位置的一段做 m
   potentials.olig_inter_all=True \
   potentials.guide_scale=2 \
   potentials.guide_decay=quadratic \
-  inference.output_prefix=outputs_pdb/c3_motif \
+  inference.output_prefix=/data/lmk/RFdiffusion/outputs/output \
   inference.num_designs=2
 ```
 > [!NOTE]

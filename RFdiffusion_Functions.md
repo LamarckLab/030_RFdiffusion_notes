@@ -245,30 +245,4 @@ D2 的对称轴是三根互相垂直、相交于分子中心的 2 次旋转轴
   inference.num_designs=5
 ```
 
----
-
-### 06 Symmetric Motif Scaffolding -- 对称性蛋白基序的支架设计
-
-> **06.1 C3 对称 motif -- 用 asu.pdb 三链同位置 motif**
-
-asu.pdb 自身是 C3 同源三聚体；从每条链取相同位置的一段做 motif，让 RFdiffusion 在 C3 对称约束下补完两端骨架。要点：contig 必须把 3 个对称单元都写清楚，每个单元里的 motif 在空间上要对应同一个对称位置
-```bash
-/data/lmk/RFdiffusion/scripts/run_inference.py \
-  inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
-  inference.symmetry=c3 \
-  'contigmap.contigs=[50/A100-130/50/0 50/B100-130/50/0 50/C100-130/50/0]' \
-  'potentials.guiding_potentials=["type:olig_contacts,weight_intra:1,weight_inter:0.1"]' \
-  potentials.olig_intra_all=True \
-  potentials.olig_inter_all=True \
-  potentials.guide_scale=2 \
-  potentials.guide_decay=quadratic \
-  inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
-  hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=2
-```
-> [!NOTE]
-> 这条命令参考官方 `examples/design_nickel.sh` (C4 版本) 改造。如果跑不通可尝试加 `inference.ckpt_override_path=/data/lmk/RFdiffusion/models/Base_epoch8_ckpt.pt` (nickel 例子说这个权重在对称 motif 任务上表现更好)。另外 SeMV ASU 是 T=3 病毒衣壳里的局部 3 重轴单元，不一定严格几何 C3 对称，跑出来需肉眼校验
-
----
-
 ##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)

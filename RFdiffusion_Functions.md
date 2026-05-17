@@ -32,7 +32,7 @@ export CUDA_VISIBLE_DEVICES=3
   'contigmap.contigs=[150-150]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=3
+  inference.num_designs=5
 ```
 
 ---
@@ -48,7 +48,7 @@ export CUDA_VISIBLE_DEVICES=3
   'contigmap.contigs=[10-20/A12-47/10-20]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=3
+  inference.num_designs=5
 ```
 
 > **02.2 单链 motif -- 固定总长度**
@@ -61,7 +61,7 @@ export CUDA_VISIBLE_DEVICES=3
   contigmap.length=70-70 \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=3
+  inference.num_designs=5
 ```
 
 > **02.3 单链 motif -- 限制总长度区间**
@@ -74,7 +74,7 @@ export CUDA_VISIBLE_DEVICES=3
   contigmap.length=60-70 \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=3
+  inference.num_designs=5
 ```
 
 > **02.4 多链 motif -- 用 `/0` 表示链断开**
@@ -86,7 +86,7 @@ export CUDA_VISIBLE_DEVICES=3
   'contigmap.contigs=[5-15/A100-200/5-15/0 B72-268]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=3
+  inference.num_designs=5
 ```
 
 > **02.5 多链 motif -- hotspot 引导**
@@ -99,7 +99,7 @@ export CUDA_VISIBLE_DEVICES=3
   'ppi.hotspot_res=[B199]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=3
+  inference.num_designs=5
 ```
 
 ---
@@ -116,7 +116,7 @@ export CUDA_VISIBLE_DEVICES=3
   diffuser.partial_T=10 \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=10
+  inference.num_designs=5
 ```
 
 > **03.2 partial_T=30 加大扰动**
@@ -129,7 +129,7 @@ export CUDA_VISIBLE_DEVICES=3
   diffuser.partial_T=30 \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=10
+  inference.num_designs=5
 ```
 
 ---
@@ -145,7 +145,7 @@ export CUDA_VISIBLE_DEVICES=3
   'contigmap.contigs=[A1-150/0 50-70]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=10
+  inference.num_designs=5
 ```
 
 > **04.2 单链 target -- hotspot 引导**
@@ -158,7 +158,7 @@ export CUDA_VISIBLE_DEVICES=3
   'ppi.hotspot_res=[A11,A14,A18,A61,A64,A68]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=10
+  inference.num_designs=5
 ```
 
 > **04.3 多链 target -- hotspot 引导**
@@ -171,7 +171,7 @@ export CUDA_VISIBLE_DEVICES=3
   'ppi.hotspot_res=[A198,B198,C198]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=10
+  inference.num_designs=5
 ```
 
 > **04.4 推荐降噪 -- noise_scale=0.5**
@@ -186,7 +186,7 @@ export CUDA_VISIBLE_DEVICES=3
   denoiser.noise_scale_frame=0.5 \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=10
+  inference.num_designs=5
 ```
 
 ---
@@ -200,49 +200,49 @@ export CUDA_VISIBLE_DEVICES=3
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \
   inference.symmetry=c3 \
-  'contigmap.contigs=[300]' \
+  'contigmap.contigs=[300-300]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=2
+  inference.num_designs=5
 ```
 
 > **05.2 Cyclic C4 -- 四聚体**
 
-把 symmetry 换成 c4，总长应能被 4 整除
+把 symmetry 换成 c4，contig 总长必须能被 4 整除
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \
   inference.symmetry=c4 \
-  'contigmap.contigs=[400]' \
+  'contigmap.contigs=[400-400]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=2
+  inference.num_designs=5
 ```
 
 > **05.3 Dihedral D2 -- 二面体 (4 链)**
 
-D2 = 2n = 4 链；总长应能被 4 整除
+D2 的对称轴是三根互相垂直、相交于分子中心的 2 次旋转轴
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \
   inference.symmetry=d2 \
-  'contigmap.contigs=[400]' \
+  'contigmap.contigs=[400-400]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=2
+  inference.num_designs=5
 ```
 
-> **05.4 Tetrahedral -- 四面体 (12 链)**
+> **05.4 Tetrahedral -- 四面体对称 (12 链)**
 
-总长应能被 12 整除
+四面体对称的对称轴是 4 根 3 次轴（顶点 ↔ 对面中心），3 根 2 次轴（相对棱的中点 ↔ 中点）
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \
   inference.symmetry=tetrahedral \
-  'contigmap.contigs=[360]' \
+  'contigmap.contigs=[360-360]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
-  inference.num_designs=1
+  inference.num_designs=5
 ```
 
 ---

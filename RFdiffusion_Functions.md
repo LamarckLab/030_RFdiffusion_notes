@@ -64,7 +64,7 @@ export CUDA_VISIBLE_DEVICES=3
   inference.num_designs=3
 ```
 
-> **02.3 单链 motif -- 总长度写区间**
+> **02.3 单链 motif -- 限制总长度区间**
 
 `contigmap.length` 也可以写区间，生成 60-70aa 的最终骨架
 ```bash

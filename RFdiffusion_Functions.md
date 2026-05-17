@@ -142,7 +142,7 @@ export CUDA_VISIBLE_DEVICES=3
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
-  'contigmap.contigs=[A1-150/0 70-100]' \
+  'contigmap.contigs=[A1-150/0 50-70]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
   inference.num_designs=10
@@ -154,7 +154,7 @@ export CUDA_VISIBLE_DEVICES=3
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
-  'contigmap.contigs=[A1-150/0 70-100]' \
+  'contigmap.contigs=[A1-150/0 50-70]' \
   'ppi.hotspot_res=[A11,A14,A18,A61,A64,A68]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
@@ -163,11 +163,11 @@ export CUDA_VISIBLE_DEVICES=3
 
 > **04.3 多链 target -- hotspot 引导**
 
-用 asu.pdb 的 ABC 三链全部作为 target，hotspot 放在 A198,B198,C198
+用 asu.pdb 的 ABC 三链全部作为 target，hotspot 放在 A198, B198, C198
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
-  'contigmap.contigs=[A73-268/0 B72-268/0 C44-268/0 70-100]' \
+  'contigmap.contigs=[A73-268/0 B72-268/0 C44-268/0 50-70]' \
   'ppi.hotspot_res=[A198,B198,C198]' \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \
   hydra.run.dir=/data/lmk/RFdiffusion/RF_logs \
@@ -180,8 +180,8 @@ export CUDA_VISIBLE_DEVICES=3
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
-  'contigmap.contigs=[A1-150/0 70-100]' \
-  'ppi.hotspot_res=[A15,A50,A100]' \
+  'contigmap.contigs=[A1-150/0 50-70]' \
+  'ppi.hotspot_res=[A11,A14,A18,A61,A64,A68]' \
   denoiser.noise_scale_ca=0.5 \
   denoiser.noise_scale_frame=0.5 \
   inference.output_prefix=/data/lmk/RFdiffusion/RF_outputs/output \

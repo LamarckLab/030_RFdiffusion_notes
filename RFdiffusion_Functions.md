@@ -10,6 +10,13 @@
 117 server上的路径: /data/RFdiffusion/scripts/run_inference.py
 ```
 
+*输入输出路径*
+```bash
+输入目录: /data/lmk/RFdiffusion/inputs        # 存放每次运行用的 PDB
+输出目录: /data/lmk/RFdiffusion/RF_outputs    # 生成的结构 PDB
+日志目录: /data/lmk/RFdiffusion/RF_logs       # Hydra 运行日志
+```
+
 *GPU选择*
 ```bash
 export CUDA_DEVICE_ORDER=PCI_BUS_ID

@@ -1,4 +1,4 @@
-## Lamarck &nbsp; &nbsp; &nbsp; 2025-8-25
+## Lamarck &nbsp; &nbsp; &nbsp; 2025-08-25
 #### 该文档用于部署 RFdiffusion
 ---
 

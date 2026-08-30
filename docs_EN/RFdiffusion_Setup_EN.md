@@ -6,7 +6,7 @@
 </p>
 
 ## Lamarck &nbsp; &nbsp; &nbsp; 2025-08-25
-#### This document deploys RFdiffusion
+#### Deploying RFdiffusion
 ---
 
 
@@ -43,10 +43,10 @@ conda activate lmk_RFdiffusion
 *04  Installing SE3Transformer, RFdiffusion's core geometric deep learning component*
 ```bash
 cd env/SE3Transformer
-pip install --no-cache-dir -r requirements.txt # install the Python dependencies SE3-Transformer needs
+pip install --no-cache-dir -r requirements.txt # install the Python dependencies required by SE3-Transformer
 python setup.py install # compile and install SE3-Transformer into the current environment
 cd ../..
-pip install -e . # install the RFdiffusion package in editable mode, so source changes take effect without reinstalling — Python reads the working tree directly, which is handy for development and debugging.
+pip install -e . # install the RFdiffusion package in editable mode; source changes take effect without reinstalling, since Python reads the working tree directly, which simplifies development and debugging
 ```
 
 ##### [RFdiffusion official documentation](https://github.com/RosettaCommons/RFdiffusion)

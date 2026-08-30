@@ -6,7 +6,7 @@
 </p>
 
 ## Lamarck &nbsp; &nbsp; &nbsp; 2025-08-25
-#### This document records the commands for running RFdiffusion on the server
+#### Command reference for running RFdiffusion on the server
 ---
 
 *Environment & paths*
@@ -40,7 +40,7 @@ export CUDA_VISIBLE_DEVICES=3
 ---
 ### 01 Unconditional Monomer -- no structural or functional constraints
 
-Design a 150aa monomeric protein backbone with no additional structural or functional constraints
+Design a 150aa monomeric protein backbone with no additional structural or functional constraints.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   'contigmap.contigs=[150-150]' \
@@ -55,7 +55,7 @@ Design a 150aa monomeric protein backbone with no additional structural or funct
 
 > **02.1 Single-chain motif -- extend the backbone at both ends**
 
-Take chain A residues 12-47 of monomer.pdb as the motif and extend it at each end with 10-20aa of random backbone
+Take chain A residues 12-47 of monomer.pdb as the motif and extend it at each end with 10-20aa of random backbone.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -67,7 +67,7 @@ Take chain A residues 12-47 of monomer.pdb as the motif and extend it at each en
 
 > **02.2 Single-chain motif -- fix the total length**
 
-Add `contigmap.length` to pin the total backbone length so the random ranges cannot change it, producing a 70aa final backbone
+Add `contigmap.length` to fix the total backbone length so that the random ranges cannot alter it, producing a 70aa final backbone.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -80,7 +80,7 @@ Add `contigmap.length` to pin the total backbone length so the random ranges can
 
 > **02.3 Single-chain motif -- constrain the total length to a range**
 
-`contigmap.length` also accepts a range, producing a 60-70aa final backbone
+`contigmap.length` also accepts a range, producing a 60-70aa final backbone.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -93,7 +93,7 @@ Add `contigmap.length` to pin the total backbone length so the random ranges can
 
 > **02.4 Multi-chain motif -- use `/0` for a chain break**
 
-Use chain A residues 100-200 of asu.pdb as the motif and the whole of chain B 72-268 as the target chain; `/0` marks the start of a new chain
+Use chain A residues 100-200 of asu.pdb as the motif and the whole of chain B 72-268 as the target chain. `/0` marks the start of a new chain.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
@@ -105,7 +105,7 @@ Use chain A residues 100-200 of asu.pdb as the motif and the whole of chain B 72
 
 > **02.5 Multi-chain motif -- hotspot guidance**
 
-Add `ppi.hotspot_res` to name one or more key residues on the target; the designed part will orient towards them
+Add `ppi.hotspot_res` to specify one or more key residues on the target; the designed region orients toward them.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
@@ -122,7 +122,7 @@ Add `ppi.hotspot_res` to name one or more key residues on the target; the design
 
 > **03.1 partial_T=10 light noising**
 
-Noise monomer.pdb and then denoise it, producing "variants" close to the input structure. `diffuser.partial_T` is the number of noising steps — more steps means more variation (the contig total length must exactly equal the residue count of the input pdb (monomer.pdb is 150aa), otherwise it errors out)
+Noise monomer.pdb and then denoise it, producing variants close to the input structure. `diffuser.partial_T` is the number of noising steps; more steps yield more variation. The contig total length must equal the residue count of the input pdb exactly — 150aa for monomer.pdb — or the run fails.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -135,7 +135,7 @@ Noise monomer.pdb and then denoise it, producing "variants" close to the input s
 
 > **03.2 partial_T=30 heavier perturbation**
 
-Raising partial_T to 30 (about 60% of T) perturbs the structure noticeably more, which is useful for exploring a wider fold space (the partial_T / T ratio decides "how much noise" is added — the closer to 1, the further the output drifts from the input)
+Raising partial_T to 30, roughly 60% of T, perturbs the structure considerably more, which is useful for exploring a wider fold space. The partial_T / T ratio determines how much noise is added: the closer to 1, the further the output departs from the input.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -152,7 +152,7 @@ Raising partial_T to 30 (about 60% of T) perturbs the structure noticeably more,
 
 > **04.1 Single-chain target -- no hotspot**
 
-Use chain A of monomer.pdb as the target and design a new 50-70aa binder. With no hotspot given, where the binder lands is entirely random
+Use chain A of monomer.pdb as the target and design a new 50-70aa binder. Without a hotspot, the binder position is entirely random.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -164,7 +164,7 @@ Use chain A of monomer.pdb as the target and design a new 50-70aa binder. With n
 
 > **04.2 Single-chain target -- hotspot guidance**
 
-Add `ppi.hotspot_res` to say which target residues the binder should bind near (the authors recommend 3-6)
+Add `ppi.hotspot_res` to specify which target residues the binder should bind near; the authors recommend 3-6.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -177,7 +177,7 @@ Add `ppi.hotspot_res` to say which target residues the binder should bind near (
 
 > **04.3 Multi-chain target -- hotspot guidance**
 
-Use all three chains A, B and C of asu.pdb as the target, with hotspots at A198, B198 and C198
+Use all three chains A, B and C of asu.pdb as the target, with hotspots at A198, B198 and C198.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
@@ -190,7 +190,7 @@ Use all three chains A, B and C of asu.pdb as the target, with hotspots at A198,
 
 > **04.4 Recommended noise reduction -- noise_scale=0.5**
 
-The authors recommend lowering the noise to 0.5 for binder design (default 1.0) as the balance point between quality and diversity; 0 is the most conservative and deterministic, but the least diverse
+The authors recommend lowering the noise to 0.5 for binder design (default 1.0), the balance point between quality and diversity. A value of 0 is the most conservative and deterministic, but the least diverse.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -209,7 +209,7 @@ The authors recommend lowering the noise to 0.5 for binder design (default 1.0) 
 
 > **05.1 Cyclic C3 -- trimer**
 
-`--config-name symmetry` switches to the symmetry-specific config; `inference.symmetry=c3` selects C3 symmetry; the contig total length must be divisible by 3
+`--config-name symmetry` switches to the symmetry-specific config and `inference.symmetry=c3` selects C3 symmetry. The contig total length must be divisible by 3.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \
@@ -222,7 +222,7 @@ The authors recommend lowering the noise to 0.5 for binder design (default 1.0) 
 
 > **05.2 Cyclic C4 -- tetramer**
 
-Switch symmetry to c4; the contig total length must be divisible by 4
+Switch symmetry to c4. The contig total length must be divisible by 4.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \
@@ -235,7 +235,7 @@ Switch symmetry to c4; the contig total length must be divisible by 4
 
 > **05.3 Dihedral D2 -- dihedral (4 chains)**
 
-The symmetry axes of D2 are three mutually perpendicular 2-fold rotation axes meeting at the centre of the molecule
+The symmetry axes of D2 are three mutually perpendicular 2-fold rotation axes meeting at the center of the molecule.
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \
@@ -248,7 +248,7 @@ The symmetry axes of D2 are three mutually perpendicular 2-fold rotation axes me
 
 > **05.4 Tetrahedral -- tetrahedral symmetry (12 chains)**
 
-Tetrahedral symmetry has four 3-fold axes (vertex ↔ centre of the opposite face) and three 2-fold axes (midpoint ↔ midpoint of opposite edges)
+Tetrahedral symmetry has four 3-fold axes (vertex ↔ center of the opposite face) and three 2-fold axes (midpoint ↔ midpoint of opposite edges).
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \

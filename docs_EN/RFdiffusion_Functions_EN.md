@@ -152,7 +152,7 @@ Raising partial_T to 30 (about 60% of T) perturbs the structure noticeably more,
 
 > **04.1 Single-chain target -- no hotspot**
 
-Use chain A of monomer.pdb as the target and design a new 70-100aa binder. With no hotspot given, where the binder lands is entirely random
+Use chain A of monomer.pdb as the target and design a new 50-70aa binder. With no hotspot given, where the binder lands is entirely random
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \

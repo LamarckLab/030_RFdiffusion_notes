@@ -152,7 +152,7 @@ export CUDA_VISIBLE_DEVICES=3
 
 > **04.1 单链 target -- 不指定 hotspot**
 
-把 monomer.pdb 的 A 链作为 target，设计一条 70-100aa 的新 binder。不给 hotspot 时 binder 落点完全随机
+把 monomer.pdb 的 A 链作为 target，设计一条 50-70aa 的新 binder。不给 hotspot 时 binder 落点完全随机
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \

@@ -1,3 +1,10 @@
+<p align="left">
+  <a href="./README.md">首页</a>
+</p>
+<p align="right">
+  <a href="./docs_EN/RFdiffusion_Setup_EN.md">English</a> | <strong>中文</strong>
+</p>
+
 ## Lamarck &nbsp; &nbsp; &nbsp; 2025-08-25
 #### 该文档用于部署 RFdiffusion
 ---

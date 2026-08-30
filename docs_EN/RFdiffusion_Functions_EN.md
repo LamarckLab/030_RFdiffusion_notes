@@ -1,46 +1,46 @@
 <p align="left">
-  <a href="./README.md">首页</a>
+  <a href="./README_EN.md">Homepage</a>
 </p>
 <p align="right">
-  <a href="./docs_EN/RFdiffusion_Functions_EN.md">English</a> | <strong>中文</strong>
+  <strong>English</strong> | <a href="../RFdiffusion_Functions.md">中文</a>
 </p>
 
 ## Lamarck &nbsp; &nbsp; &nbsp; 2025-08-25
-#### 该文档用于记录 server 上跑 RFdiffusion 的各种命令
+#### This document records the commands for running RFdiffusion on the server
 ---
 
-*环境 & 路径*
+*Environment & paths*
 ```bash
-236 server上的环境: lmk_RFdiffusion
-236 server上的路径: /data/lmk/RFdiffusion/scripts/run_inference.py
-117 server上的环境: SE3nv
-117 server上的路径: /data/RFdiffusion/scripts/run_inference.py
+Env on the 236 server:  lmk_RFdiffusion
+Path on the 236 server: /data/lmk/RFdiffusion/scripts/run_inference.py
+Env on the 117 server:  SE3nv
+Path on the 117 server: /data/RFdiffusion/scripts/run_inference.py
 ```
 
-*输入输出路径*
+*Input & output paths*
 ```bash
-输入目录: /data/lmk/RFdiffusion/inputs        # 存放每次运行用的 PDB
-输出目录: /data/lmk/RFdiffusion/RF_outputs    # 生成的结构 PDB
-日志目录: /data/lmk/RFdiffusion/RF_logs       # Hydra 运行日志
+Input dir:  /data/lmk/RFdiffusion/inputs        # PDB files used for each run
+Output dir: /data/lmk/RFdiffusion/RF_outputs    # generated structure PDBs
+Log dir:    /data/lmk/RFdiffusion/RF_logs       # Hydra run logs
 ```
 
-*GPU选择*
+*GPU selection*
 ```bash
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
 export CUDA_VISIBLE_DEVICES=3
 ```
 
-*输入 PDB 文件*
-- `monomer.pdb` -- 单链 monomer，A 链残基号 1-150 (150aa)
-- `asu.pdb` -- SeMV (Sesbania mosaic virus) T=3 衣壳的非对称单元，C3 同源三聚体
-  - A 链残基号 73-268 (196aa)
-  - B 链残基号 72-268 (197aa)
-  - C 链残基号 44-268 (225aa)
+*Input PDB files*
+- `monomer.pdb` -- single-chain monomer; chain A residues 1-150 (150aa)
+- `asu.pdb` -- the asymmetric unit of the SeMV (Sesbania mosaic virus) T=3 capsid, a C3 homotrimer
+  - chain A residues 73-268 (196aa)
+  - chain B residues 72-268 (197aa)
+  - chain C residues 44-268 (225aa)
 
 ---
-### 01 Unconditional Monomer -- 无条件单体设计
+### 01 Unconditional Monomer -- no structural or functional constraints
 
-设计一个 150aa 的单体蛋白骨架，不附加其他结构或功能限制
+Design a 150aa monomeric protein backbone with no additional structural or functional constraints
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   'contigmap.contigs=[150-150]' \
@@ -51,11 +51,11 @@ export CUDA_VISIBLE_DEVICES=3
 
 ---
 
-### 02 Motif Scaffolding -- 蛋白基序的支架设计
+### 02 Motif Scaffolding -- building a scaffold around a protein motif
 
-> **02.1 单链 motif -- 两端延伸骨架**
+> **02.1 Single-chain motif -- extend the backbone at both ends**
 
-从 monomer.pdb 取 A 链 12-47 作为 motif，两端分别延伸 10-20aa 长度的随机骨架
+Take chain A residues 12-47 of monomer.pdb as the motif and extend it at each end with 10-20aa of random backbone
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -65,9 +65,9 @@ export CUDA_VISIBLE_DEVICES=3
   inference.num_designs=5
 ```
 
-> **02.2 单链 motif -- 固定总长度**
+> **02.2 Single-chain motif -- fix the total length**
 
-加 `contigmap.length` 把骨架总长锁死，不让随机区间影响最终长度，生成 70aa 的最终骨架
+Add `contigmap.length` to pin the total backbone length so the random ranges cannot change it, producing a 70aa final backbone
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -78,9 +78,9 @@ export CUDA_VISIBLE_DEVICES=3
   inference.num_designs=5
 ```
 
-> **02.3 单链 motif -- 限制总长度区间**
+> **02.3 Single-chain motif -- constrain the total length to a range**
 
-`contigmap.length` 也可以写区间，生成 60-70aa 的最终骨架
+`contigmap.length` also accepts a range, producing a 60-70aa final backbone
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -91,9 +91,9 @@ export CUDA_VISIBLE_DEVICES=3
   inference.num_designs=5
 ```
 
-> **02.4 多链 motif -- 用 `/0` 表示链断开**
+> **02.4 Multi-chain motif -- use `/0` for a chain break**
 
-用 asu.pdb 的 A 链 100-200 作为 motif，B 链 72-268 整条作为 target chain，`/0` 表示新链开始
+Use chain A residues 100-200 of asu.pdb as the motif and the whole of chain B 72-268 as the target chain; `/0` marks the start of a new chain
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
@@ -103,9 +103,9 @@ export CUDA_VISIBLE_DEVICES=3
   inference.num_designs=5
 ```
 
-> **02.5 多链 motif -- hotspot 引导**
+> **02.5 Multi-chain motif -- hotspot guidance**
 
-加 `ppi.hotspot_res` 指定 target 上一个或多个关键残基，设计的部分会朝它去
+Add `ppi.hotspot_res` to name one or more key residues on the target; the designed part will orient towards them
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
@@ -118,11 +118,11 @@ export CUDA_VISIBLE_DEVICES=3
 
 ---
 
-### 03 Partial Diffusion -- 部分扩散
+### 03 Partial Diffusion -- partial noising and denoising
 
-> **03.1 partial_T=10 加噪扩散**
+> **03.1 partial_T=10 light noising**
 
-对 monomer.pdb 加噪后再去噪，输出与输入结构相近的"变异体"。`diffuser.partial_T` 是加噪步数，步数越大变异越多（contig 总长必须严格等于输入 pdb 的残基数 (monomer.pdb 是 150aa)，否则会报错）
+Noise monomer.pdb and then denoise it, producing "variants" close to the input structure. `diffuser.partial_T` is the number of noising steps — more steps means more variation (the contig total length must exactly equal the residue count of the input pdb (monomer.pdb is 150aa), otherwise it errors out)
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -133,9 +133,9 @@ export CUDA_VISIBLE_DEVICES=3
   inference.num_designs=5
 ```
 
-> **03.2 partial_T=30 加大扰动**
+> **03.2 partial_T=30 heavier perturbation**
 
-把 partial_T 调到 30 (约 T 的 60%)，结构扰动明显加大，可用于探索更广的折叠空间（partial_T / T 这个比值决定了"加多少噪"，比值越接近 1，输出离输入越远）
+Raising partial_T to 30 (about 60% of T) perturbs the structure noticeably more, which is useful for exploring a wider fold space (the partial_T / T ratio decides "how much noise" is added — the closer to 1, the further the output drifts from the input)
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -148,11 +148,11 @@ export CUDA_VISIBLE_DEVICES=3
 
 ---
 
-### 04 Binder Design -- 结合物设计
+### 04 Binder Design -- designing a binder against a target
 
-> **04.1 单链 target -- 不指定 hotspot**
+> **04.1 Single-chain target -- no hotspot**
 
-把 monomer.pdb 的 A 链作为 target，设计一条 70-100aa 的新 binder。不给 hotspot 时 binder 落点完全随机
+Use chain A of monomer.pdb as the target and design a new 70-100aa binder. With no hotspot given, where the binder lands is entirely random
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -162,9 +162,9 @@ export CUDA_VISIBLE_DEVICES=3
   inference.num_designs=5
 ```
 
-> **04.2 单链 target -- hotspot 引导**
+> **04.2 Single-chain target -- hotspot guidance**
 
-加 `ppi.hotspot_res` 指定 binder 应该结合到 target 的哪几个残基附近 (官方推荐 3-6 个)
+Add `ppi.hotspot_res` to say which target residues the binder should bind near (the authors recommend 3-6)
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -175,9 +175,9 @@ export CUDA_VISIBLE_DEVICES=3
   inference.num_designs=5
 ```
 
-> **04.3 多链 target -- hotspot 引导**
+> **04.3 Multi-chain target -- hotspot guidance**
 
-用 asu.pdb 的 ABC 三链全部作为 target，hotspot 放在 A198, B198, C198
+Use all three chains A, B and C of asu.pdb as the target, with hotspots at A198, B198 and C198
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/asu.pdb \
@@ -188,9 +188,9 @@ export CUDA_VISIBLE_DEVICES=3
   inference.num_designs=5
 ```
 
-> **04.4 推荐降噪 -- noise_scale=0.5**
+> **04.4 Recommended noise reduction -- noise_scale=0.5**
 
-官方推荐 binder design 把噪声降到 0.5 (默认 1.0)，质量和多样性的平衡点；设 0 最保守、最确定，但多样性最低
+The authors recommend lowering the noise to 0.5 for binder design (default 1.0) as the balance point between quality and diversity; 0 is the most conservative and deterministic, but the least diverse
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   inference.input_pdb=/data/lmk/RFdiffusion/inputs/monomer.pdb \
@@ -205,11 +205,11 @@ export CUDA_VISIBLE_DEVICES=3
 
 ---
 
-### 05 Symmetric Oligomer -- 对称同源多聚体设计
+### 05 Symmetric Oligomer -- symmetric homo-oligomer design
 
-> **05.1 Cyclic C3 -- 三聚体**
+> **05.1 Cyclic C3 -- trimer**
 
-`--config-name symmetry` 切换到对称专用 config；`inference.symmetry=c3` 指定 C3 对称；contig 总长必须能被 3 整除
+`--config-name symmetry` switches to the symmetry-specific config; `inference.symmetry=c3` selects C3 symmetry; the contig total length must be divisible by 3
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \
@@ -220,9 +220,9 @@ export CUDA_VISIBLE_DEVICES=3
   inference.num_designs=5
 ```
 
-> **05.2 Cyclic C4 -- 四聚体**
+> **05.2 Cyclic C4 -- tetramer**
 
-把 symmetry 换成 c4，contig 总长必须能被 4 整除
+Switch symmetry to c4; the contig total length must be divisible by 4
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \
@@ -233,9 +233,9 @@ export CUDA_VISIBLE_DEVICES=3
   inference.num_designs=5
 ```
 
-> **05.3 Dihedral D2 -- 二面体 (4 链)**
+> **05.3 Dihedral D2 -- dihedral (4 chains)**
 
-D2 的对称轴是三根互相垂直、相交于分子中心的 2 次旋转轴
+The symmetry axes of D2 are three mutually perpendicular 2-fold rotation axes meeting at the centre of the molecule
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \
@@ -246,9 +246,9 @@ D2 的对称轴是三根互相垂直、相交于分子中心的 2 次旋转轴
   inference.num_designs=5
 ```
 
-> **05.4 Tetrahedral -- 四面体对称 (12 链)**
+> **05.4 Tetrahedral -- tetrahedral symmetry (12 chains)**
 
-四面体对称的对称轴是 4 根 3 次轴（顶点 ↔ 对面中心），3 根 2 次轴（相对棱的中点 ↔ 中点）
+Tetrahedral symmetry has four 3-fold axes (vertex ↔ centre of the opposite face) and three 2-fold axes (midpoint ↔ midpoint of opposite edges)
 ```bash
 /data/lmk/RFdiffusion/scripts/run_inference.py \
   --config-name symmetry \
@@ -259,4 +259,4 @@ D2 的对称轴是三根互相垂直、相交于分子中心的 2 次旋转轴
   inference.num_designs=5
 ```
 
-##### [RFdiffusion官方文档](https://github.com/RosettaCommons/RFdiffusion)
+##### [RFdiffusion official documentation](https://github.com/RosettaCommons/RFdiffusion)
